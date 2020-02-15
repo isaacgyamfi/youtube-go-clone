@@ -3,28 +3,46 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { Ionicons } from '@expo/vector-icons';
+import Header from '../components/Header';
 import HomeScreen from '../screens/Home';
 import DownloadScreen from '../screens/Downloads';
 
-// const Stack = createStackNavigator();
-// const HomeStack = () => {
-//     return (
-//         <Stack.Navigator>
-//             <Stack.Screen name='Home' component={HomeScreen} />
-//         </Stack.Navigator>
-//     )
-// }
+const Stack = createStackNavigator();
+const StackScreen = Stack.Screen;
+const HomeStack = () => {
+  return (
+    <Stack.Navigator>
+      <StackScreen
+        name="Home"
+        component={HomeScreen}
+        options={{ headerTitle: props => <Header {...props} /> }}
+      />
+    </Stack.Navigator>
+  );
+};
+
+const DownloadsStack = () => {
+  return (
+    <Stack.Navigator>
+      <StackScreen
+        name="Download"
+        component={DownloadScreen}
+        options={{ headerTitle: props => <Header {...props} /> }}
+      />
+    </Stack.Navigator>
+  );
+};
 
 const Tab = createBottomTabNavigator();
 const Screen = Tab.Screen;
 const MainTab = () => {
   return (
     <Tab.Navigator
-      tabBarOptions={{ activeTintColor: 'tomato', inactiveTintColor: 'gray' }}
+      tabBarOptions={{ activeTintColor: 'red', inactiveTintColor: 'gray' }}
     >
       <Screen
         name="Home"
-        component={HomeScreen}
+        component={HomeStack}
         options={{
           tabBarIcon: ({ focused, color }) => (
             <Ionicons
@@ -38,7 +56,7 @@ const MainTab = () => {
       />
       <Screen
         name="Downloads"
-        component={DownloadScreen}
+        component={DownloadsStack}
         options={{
           tabBarIcon: ({ focused, color }) => (
             <Ionicons
