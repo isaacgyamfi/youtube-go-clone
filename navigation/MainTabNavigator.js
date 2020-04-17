@@ -15,7 +15,7 @@ const HomeStack = () => {
       <StackScreen
         name="Home"
         component={HomeScreen}
-        options={{ headerTitle: props => <Header {...props} /> }}
+        options={{ headerTitle: (props) => <Header {...props} /> }}
       />
     </Stack.Navigator>
   );
@@ -27,7 +27,7 @@ const DownloadsStack = () => {
       <StackScreen
         name="Download"
         component={DownloadScreen}
-        options={{ headerTitle: props => <Header {...props} /> }}
+        options={{ headerTitle: (props) => <Header {...props} /> }}
       />
     </Stack.Navigator>
   );
@@ -51,7 +51,7 @@ const MainTab = () => {
               size={26}
               color={color}
             />
-          )
+          ),
         }}
       />
       <Screen
@@ -65,7 +65,7 @@ const MainTab = () => {
               size={26}
               color={color}
             />
-          )
+          ),
         }}
       />
     </Tab.Navigator>
