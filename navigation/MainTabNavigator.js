@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import Header from '../components/Header';
 import HomeScreen from '../screens/Home';
 import DownloadScreen from '../screens/Downloads';
+import AccountScreen from '../screens/Account';
 
 const Stack = createStackNavigator();
 const StackScreen = Stack.Screen;
@@ -17,6 +18,7 @@ const HomeStack = () => {
         component={HomeScreen}
         options={{ headerTitle: (props) => <Header {...props} /> }}
       />
+      <StackScreen name="Account" component={AccountScreen} />
     </Stack.Navigator>
   );
 };
@@ -29,6 +31,14 @@ const DownloadsStack = () => {
         component={DownloadScreen}
         options={{ headerTitle: (props) => <Header {...props} /> }}
       />
+      <StackScreen name="Account" component={AccountScreen} />
+    </Stack.Navigator>
+  );
+};
+const AccountStack = () => {
+  return (
+    <Stack.Navigator>
+      <StackScreen name="Account" component={AccountScreen} />
     </Stack.Navigator>
   );
 };

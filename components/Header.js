@@ -1,8 +1,10 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 const Header = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View>
@@ -18,12 +20,17 @@ const Header = () => {
         <View>
           <Ionicons name="md-search" size={25} />
         </View>
-        <View style={styles.avatar}>
-          <Image
-            source={require('../assets/avatar.png')}
-            style={{ height: 25, width: 25 }}
-          />
-        </View>
+        <TouchableOpacity
+          style={{ padding: 5, borderRadius: 13 }}
+          onPress={() => navigation.navigate('Account')}
+        >
+          <View style={styles.avatar}>
+            <Image
+              source={require('../assets/avatar.png')}
+              style={{ height: 25, width: 25 }}
+            />
+          </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -34,7 +41,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: 330
+    width: 340,
   },
   avatar: {
     borderRadius: 20,
@@ -42,8 +49,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#ddd',
     width: 25,
     height: 25,
-    marginLeft: 20
-  }
+    marginLeft: 20,
+  },
 });
 
 export default Header;

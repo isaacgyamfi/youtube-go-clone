@@ -4,7 +4,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 const SubHeader = () => {
   return (
-    <View style={{ paddingVertical: 5 }}>
+    <View style={{ paddingVertical: 10, backgroundColor: '#eee' }}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <View>
           <Text style={{ color: 'gray' }}>Your channels</Text>

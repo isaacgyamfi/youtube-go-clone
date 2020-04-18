@@ -33,7 +33,7 @@ const videos = [
 
 const Home = () => {
   return (
-    <View style={{ paddingBottom: 50 }}>
+    <View style={{ paddingBottom: 50, backgroundColor: '#fff' }}>
       <View>
         <SubHeader />
       </View>
