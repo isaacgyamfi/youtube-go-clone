@@ -6,10 +6,11 @@ import {
   StyleSheet,
   Picker,
   TouchableOpacity,
+  ImageBackground,
 } from 'react-native';
 import { Entypo, MaterialIcons } from '@expo/vector-icons';
 import VideoModal from './VideoModal';
-import Ripple from 'react-native-material-ripple';
+import { abbreviateNumber } from '../utils';
 
 const VideoItem = ({ item }) => {
   const [videoSize, setvideoSize] = useState({
@@ -20,32 +21,50 @@ const VideoItem = ({ item }) => {
   const toggleModal = () => setVideoModal(!videoModalVisible);
   return (
     <TouchableOpacity activeOpacity={0.8} onPress={() => toggleModal()}>
-      <VideoModal showModal={toggleModal} modalState={videoModalVisible} />
+      <VideoModal
+        videoDetail={item}
+        showModal={toggleModal}
+        modalState={videoModalVisible}
+      />
       <View style={{ padding: 10 }}>
         <View style={{ height: 200, width: '100%' }}>
-          <Image
-            source={{ uri: item.thumbnail }}
-            style={{ height: 200, width: '100%' }}
-          />
+          <ImageBackground
+            source={{ uri: item.snippet.thumbnails.medium.url }}
+            style={{
+              height: 200,
+              width: '100%',
+              justifyContent: 'flex-end',
+              alignItems: 'flex-end',
+            }}
+          >
+            <View style={styles.videoSize}>
+              <Text style={{ color: '#fff', fontSize: 16 }}>
+                {/* time format to be fixed */}
+                {item.contentDetails.duration}
+              </Text>
+            </View>
+          </ImageBackground>
         </View>
         <View style={{ flex: 11, flexDirection: 'row', paddingTop: 10 }}>
           <View style={{ flex: 2 }}>
             <View style={styles.avatar}>
               <Image
-                source={{ uri: item.avatar }}
+                source={{ uri: item.snippet.thumbnails.default.url }}
                 style={{ borderRadius: 25, height: 50, width: 50 }}
               />
             </View>
           </View>
           <View style={{ flex: 8, flexDirection: 'column' }}>
             <View>
-              <Text>
-                Woman Posts a Photo of a Kitten Only to Realize Her Big Mistake
-              </Text>
+              <Text>{item.snippet.title}</Text>
               <View style={{ flexDirection: 'row' }}>
-                <Text style={styles.videoSummary}>Facts Verse</Text>
+                <Text style={styles.videoSummary}>
+                  {item.snippet.channelTitle}
+                </Text>
                 <Entypo color="gray" name="dot-single" size={16} />
-                <Text style={styles.videoSummary}>65K views</Text>
+                <Text style={styles.videoSummary}>
+                  {abbreviateNumber(item.statistics.viewCount)} views
+                </Text>
                 <Entypo color="gray" name="dot-single" size={16} />
                 <Text style={styles.videoSummary}>1 day ago</Text>
               </View>
@@ -104,6 +123,11 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     height: 50,
     width: 50,
+  },
+  videoSize: {
+    backgroundColor: '#000',
+    margin: 10,
+    paddingHorizontal: 5,
   },
 });
 

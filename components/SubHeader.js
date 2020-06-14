@@ -6,7 +6,7 @@ const SubHeader = () => {
   return (
     <View style={{ paddingVertical: 10, backgroundColor: '#eee' }}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-        <View>
+        <View style={{ marginLeft: 10 }}>
           <Text style={{ color: 'gray' }}>Your channels</Text>
         </View>
         <View>

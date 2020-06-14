@@ -19,12 +19,12 @@ import { Ionicons } from '@expo/vector-icons';
 const { height } = Dimensions.get('window');
 
 const dataRadios = [
-  { label: 'Data saver', value: 0 },
-  { label: 'Standard quality', value: 1 },
-  { label: 'High quality', value: 2 },
+  { key: '1', label: 'Data saver', value: 0 },
+  { key: '2', label: 'Standard quality', value: 1 },
+  { key: '3', label: 'High quality', value: 2 },
 ];
 
-const VideoModal = ({ showModal, modalState }) => {
+const VideoModal = ({ showModal, modalState, videoDetail }) => {
   return (
     <Modal
       animationIn="fadeIn"
@@ -40,7 +40,7 @@ const VideoModal = ({ showModal, modalState }) => {
         <View style={styles.preview}>
           <ImageBackground
             style={styles.bgImage}
-            source={{ uri: 'https://i.pravatar.cc/200' }}
+            source={{ uri: videoDetail.snippet.thumbnails.medium.url }}
           >
             <TouchableOpacity style={styles.previewBtn}>
               <Ionicons color="#fff" name="md-play" size={24} />
@@ -58,7 +58,7 @@ const VideoModal = ({ showModal, modalState }) => {
           <View style={{ marginHorizontal: 15, marginVertical: 5 }}>
             <View>
               {dataRadios.map((obj, i) => (
-                <View>
+                <View key={obj.key}>
                   <RadioButton
                     labelHorizontal={true}
                     key={i}
@@ -139,14 +139,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    width: 150,
+    width: 140,
     borderRadius: 2,
   },
   btnRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
+    marginBottom: 5,
   },
 });
 
